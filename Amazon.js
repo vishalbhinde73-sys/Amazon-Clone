@@ -1,213 +1,143 @@
-/**
- * AMAZON CLONE CLIENT-SIDE INTERACTION SUITE
- */
+document.addEventListener("DOMContentLoaded", () => {
+  let cartCount = 0;
 
-document.addEventListener('DOMContentLoaded', () => {
-  initHeroCarousel();
-  initSearchAutocomplete();
-  initSidebarDrawer();
-  initLiveStreamSimulator();
-  initBackToTop();
-});
+  // Modals & Sidebar
+  const backdrop = document.getElementById("backdrop");
+  const sidebar = document.getElementById("sidebar");
+  const openSidebarBtn = document.getElementById("open-sidebar-btn");
+  const closeSidebarBtn = document.getElementById("close-sidebar-btn");
+  const locationModal = document.getElementById("location-modal");
+  const locationTrigger = document.getElementById("location-trigger");
+  const closeModalBtn = document.getElementById("close-modal-btn");
+  const applyPincodeBtn = document.getElementById("apply-pincode-btn");
+  const pincodeInput = document.getElementById("pincode-input");
+  const currentPincode = document.getElementById("current-pincode");
 
-// 1. Hero Carousel
-let currentHeroIndex = 0;
-let heroTimer = null;
+  const cartCountEl = document.getElementById("cart-count");
+  const toast = document.getElementById("toast");
+  const backToTopBtn = document.getElementById("back-to-top-btn");
 
-function initHeroCarousel() {
-  const slides = document.querySelectorAll('.hero-slide');
-  const prevBtn = document.getElementById('heroPrevBtn');
-  const nextBtn = document.getElementById('heroNextBtn');
-  const carousel = document.getElementById('heroCarousel');
-
-  if (!slides.length) return;
+  // Hero Carousel
+  const slides = document.querySelectorAll(".carousel-slide");
+  const dots = document.querySelectorAll(".carousel-dots .dot");
+  const prevBtn = document.getElementById("carousel-prev");
+  const nextBtn = document.getElementById("carousel-next");
+  let currentSlideIndex = 0;
+  let slideInterval = null;
 
   function showSlide(index) {
-    slides.forEach((s, idx) => s.classList.toggle('active', idx === index));
-    currentHeroIndex = index;
+    slides.forEach((slide, i) => slide.classList.toggle("current-slide", i === index));
+    dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+    currentSlideIndex = index;
   }
 
   function nextSlide() {
-    showSlide((currentHeroIndex + 1) % slides.length);
+    showSlide((currentSlideIndex + 1) % slides.length);
   }
 
   function prevSlide() {
-    showSlide((currentHeroIndex - 1 + slides.length) % slides.length);
+    showSlide((currentSlideIndex - 1 + slides.length) % slides.length);
   }
 
-  function startAutoPlay() {
-    stopAutoPlay();
-    heroTimer = setInterval(nextSlide, 5000);
+  function startSlideShow() {
+    stopSlideShow();
+    slideInterval = setInterval(nextSlide, 5000);
   }
 
-  function stopAutoPlay() {
-    if (heroTimer) clearInterval(heroTimer);
+  function stopSlideShow() {
+    if (slideInterval) clearInterval(slideInterval);
   }
 
-  if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
-  if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
-
-  if (carousel) {
-    carousel.addEventListener('mouseenter', stopAutoPlay);
-    carousel.addEventListener('mouseleave', startAutoPlay);
+  if (nextBtn && prevBtn) {
+    nextBtn.addEventListener("click", () => { nextSlide(); startSlideShow(); });
+    prevBtn.addEventListener("click", () => { prevSlide(); startSlideShow(); });
+    dots.forEach((dot, idx) => dot.addEventListener("click", () => { showSlide(idx); startSlideShow(); }));
+    startSlideShow();
   }
 
-  startAutoPlay();
-}
-
-// 2. Horizontal Sliders Scroll
-function scrollSlider(sliderId, offset) {
-  const track = document.getElementById(sliderId);
-  if (track) {
-    track.scrollBy({ left: offset, behavior: 'smooth' });
-  }
-}
-
-// 3. Cart & Toast
-let cartCount = 0;
-let toastTimeout = null;
-
-function addToCartItem(productName, price) {
-  cartCount++;
-  const cartBadge = document.getElementById('cartCount');
-  if (cartBadge) {
-    cartBadge.textContent = cartCount;
-    cartBadge.style.transform = 'scale(1.3)';
-    setTimeout(() => { cartBadge.style.transform = 'scale(1)'; }, 200);
-  }
-  triggerToast(`Added: ${productName} (₹${price.toLocaleString('en-IN')})`);
-}
-
-function triggerToast(message) {
-  const toast = document.getElementById('amazonToast');
-  const toastText = document.getElementById('toastText');
-  if (!toast || !toastText) return;
-
-  toastText.textContent = message;
-  toast.classList.add('show');
-
-  if (toastTimeout) clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => { toast.classList.remove('show'); }, 3000);
-}
-
-// 4. Sidebar Drawer
-function initSidebarDrawer() {
-  const openBtn = document.getElementById('openSidebarBtn');
-  const closeBtn = document.getElementById('closeSidebarBtn');
-  const overlay = document.getElementById('sidebarOverlay');
-  const sidebar = document.getElementById('sidebarMenu');
-
-  function openMenu() {
-    sidebar?.classList.add('active');
-    overlay?.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMenu() {
-    sidebar?.classList.remove('active');
-    overlay?.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  openBtn?.addEventListener('click', openMenu);
-  closeBtn?.addEventListener('click', closeMenu);
-  overlay?.addEventListener('click', closeMenu);
-}
-
-// 5. Modals & Location Update
-const locationBtn = document.getElementById('locationBtn');
-const locationModal = document.getElementById('locationModal');
-const loginModal = document.getElementById('loginModal');
-
-locationBtn?.addEventListener('click', () => locationModal?.classList.add('active'));
-
-function closeLocationModal() {
-  locationModal?.classList.remove('active');
-}
-
-function applyPincode() {
-  const pin = document.getElementById('pincodeInput').value.trim();
-  if (pin.length === 6 && !isNaN(pin)) {
-    const deliveringLabel = document.getElementById('deliveringTo');
-    if (deliveringLabel) deliveringLabel.textContent = `Delivering to Indore ${pin}`;
-    triggerToast(`Location updated to Indore ${pin}`);
-    closeLocationModal();
-  }
-}
-
-function openLoginModal() {
-  loginModal?.classList.add('active');
-}
-
-function closeLoginModal() {
-  loginModal?.classList.remove('active');
-}
-
-function handleLoginSubmit() {
-  const email = document.getElementById('loginEmail').value.trim();
-  if (email) {
-    triggerToast(`Welcome back, ${email}!`);
-    closeLoginModal();
-  }
-}
-
-// 6. Search Autocomplete
-const searchTerms = [
-  'air conditioners 1.5 ton',
-  'appliances for home',
-  'boat earbuds wireless bluetooth',
-  'dollar polo t-shirt for men',
-  'headphones zebronics jbl',
-  'kitchen knife set stainless steel',
-  'sneakers under 599',
-  'washing machines 7kg'
-];
-
-function initSearchAutocomplete() {
-  const input = document.getElementById('searchInput');
-  const box = document.getElementById('searchSuggestions');
-  const btn = document.getElementById('searchSubmitBtn');
-
-  input?.addEventListener('input', () => {
-    const val = input.value.trim().toLowerCase();
-    if (!val) {
-      box.classList.remove('active');
-      return;
-    }
-    const matches = searchTerms.filter(t => t.includes(val));
-    if (matches.length) {
-      box.innerHTML = matches.map(m => `
-        <div class="suggestion-item" onclick="document.getElementById('searchInput').value='${m}'; document.getElementById('searchSuggestions').classList.remove('active');">
-          🔍 ${m}
-        </div>
-      `).join('');
-      box.classList.add('active');
-    } else {
-      box.classList.remove('active');
+  // Shelf Scroller
+  document.querySelectorAll(".shelf-section").forEach((section) => {
+    const carousel = section.querySelector(".shelf-carousel");
+    const prev = section.querySelector(".shelf-prev");
+    const next = section.querySelector(".shelf-next");
+    if (carousel && prev && next) {
+      next.addEventListener("click", () => carousel.scrollBy({ left: 300, behavior: "smooth" }));
+      prev.addEventListener("click", () => carousel.scrollBy({ left: -300, behavior: "smooth" }));
     }
   });
 
-  btn?.addEventListener('click', () => {
-    if (input.value.trim()) triggerToast(`Searching: "${input.value.trim()}"`);
-  });
-}
+  // Sidebar Controls
+  if (openSidebarBtn) {
+    openSidebarBtn.addEventListener("click", () => {
+      sidebar.classList.add("active");
+      backdrop.classList.add("active");
+    });
+  }
 
-// 7. Live Stream Simulator
-function initLiveStreamSimulator() {
-  const watchBtn = document.getElementById('liveWatchBtn');
-  let streaming = false;
+  if (closeSidebarBtn) {
+    closeSidebarBtn.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      backdrop.classList.remove("active");
+    });
+  }
 
-  watchBtn?.addEventListener('click', () => {
-    streaming = !streaming;
-    watchBtn.innerHTML = streaming ? '⏸ Pause Stream' : '<span class="play-triangle">▶</span> Watch now';
-    triggerToast(streaming ? 'Playing: Welcome to Asian Home & Living' : 'Stream paused');
-  });
-}
+  // Location Modal
+  if (locationTrigger) {
+    locationTrigger.addEventListener("click", () => {
+      locationModal.classList.add("active");
+      backdrop.classList.add("active");
+    });
+  }
 
-// 8. Back to Top
-function initBackToTop() {
-  document.getElementById('backToTopBtn')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", () => {
+      locationModal.classList.remove("active");
+      backdrop.classList.remove("active");
+    });
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener("click", () => {
+      sidebar?.classList.remove("active");
+      locationModal?.classList.remove("active");
+      backdrop.classList.remove("active");
+    });
+  }
+
+  if (applyPincodeBtn && pincodeInput) {
+    applyPincodeBtn.addEventListener("click", () => {
+      const pin = pincodeInput.value.trim();
+      if (pin.length === 6 && !isNaN(pin)) {
+        currentPincode.textContent = pin;
+        showToast(`Delivery location updated to ${pin}`);
+        locationModal.classList.remove("active");
+        backdrop.classList.remove("active");
+      }
+    });
+  }
+
+  // Add to Cart
+  function showToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 3000);
+  }
+
+  document.querySelectorAll(".btn-add-cart").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const title = e.currentTarget.getAttribute("data-title") || "Item";
+      const price = e.currentTarget.getAttribute("data-price") || "0";
+      cartCount++;
+      if (cartCountEl) cartCountEl.textContent = cartCount;
+      showToast(`Added "${title}" (₹${price}) to cart!`);
+    });
   });
-}
+
+  // Back to Top
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+});
