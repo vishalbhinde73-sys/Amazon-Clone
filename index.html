@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in</title>
+  <link rel="stylesheet" href="Styling.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23131921'/><path d='M25 68 Q50 82 75 68' stroke='%23ff9900' stroke-width='8' fill='none' stroke-linecap='round'/><polygon points='73,63 80,68 76,76' fill='%23ff9900'/></svg>" />
+</head>
+<body>
+
+  <!-- ================= TOP HEADER NAVIGATION ================= -->
+  <header class="header">
+    <div class="header-main">
+      <!-- Amazon Logo -->
+      <a href="#" class="header-logo-container" aria-label="Amazon Home">
+        <div class="amazon-logo">
+          <span class="logo-text">amazon</span>
+          <span class="logo-domain">.in</span>
+          <svg class="logo-smile" viewBox="0 0 100 30" aria-hidden="true">
+            <path d="M5 12 Q50 32 95 12" stroke="#ff9900" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+            <polygon points="90,7 98,13 93,21" fill="#ff9900"/>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Location Selector -->
+      <div class="header-location" id="locationBtn" role="button" tabindex="0" title="Click to update delivery location">
+        <svg class="nav-icon pin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" fill="currentColor"/>
+        </svg>
+        <div class="location-text">
+          <span class="nav-line-1" id="deliveringTo">Delivering to Indore 452001</span>
+          <span class="nav-line-2">Update location</span>
+        </div>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="header-search">
+        <div class="search-category-dropdown">
+          <select id="searchCategory" class="category-select" aria-label="Select category">
+            <option value="all">All</option>
+            <option value="appliances">Appliances</option>
+            <option value="automotive">Automotive</option>
+            <option value="baby">Baby</option>
+            <option value="beauty">Beauty</option>
+            <option value="books">Books</option>
+            <option value="clothing">Clothing & Accessories</option>
+            <option value="electronics">Electronics</option>
+            <option value="home">Home & Kitchen</option>
+            <option value="launchpad">Amazon Launchpad</option>
+          </select>
+        </div>
+        <div class="search-input-wrap">
+          <input type="text" id="searchInput" class="search-input" placeholder="Search Amazon.in" autocomplete="off" aria-label="Search Amazon.in" />
+          <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+        <button class="search-submit-btn" id="searchSubmitBtn" aria-label="Go">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="7"/>
+            <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Language Selector -->
+      <div class="header-lang" tabindex="0">
+        <div class="lang-flag">
+          <svg viewBox="0 0 36 24" width="22" height="15">
+            <rect width="36" height="8" fill="#FF9933"/>
+            <rect y="8" width="36" height="8" fill="#FFFFFF"/>
+            <rect y="16" width="36" height="8" fill="#128807"/>
+            <circle cx="18" cy="12" r="3.2" fill="#000080"/>
+          </svg>
+        </div>
+        <span class="lang-code">EN</span>
+        <span class="nav-arrow">▾</span>
+      </div>
+
+      <!-- Account & Lists -->
+      <div class="header-account" id="accountMenuTrigger" tabindex="0">
+        <span class="nav-line-1">Hello, sign in</span>
+        <span class="nav-line-2">Account & Lists <span class="nav-arrow">▾</span></span>
+        
+        <!-- Account Dropdown Flyout -->
+        <div class="account-flyout" id="accountFlyout">
+          <div class="flyout-signin-section">
+            <button class="amazon-btn btn-yellow full-width" onclick="openLoginModal()">Sign in</button>
+            <p class="new-customer">New customer? <a href="#" onclick="openLoginModal(); return false;">Start here.</a></p>
+          </div>
+          <div class="flyout-columns">
+            <div class="flyout-col">
+              <h3>Your Lists</h3>
+              <ul>
+                <li><a href="#">Create a Wish List</a></li>
+                <li><a href="#">Wish from Any Website</a></li>
+                <li><a href="#">Baby Wishlist</a></li>
+                <li><a href="#">Discover Your Style</a></li>
+              </ul>
+            </div>
+            <div class="flyout-col">
+              <h3>Your Account</h3>
+              <ul>
+                <li><a href="#">Your Account</a></li>
+                <li><a href="#">Your Orders</a></li>
+                <li><a href="#">Your Recommendations</a></li>
+                <li><a href="#">Your Prime Membership</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Returns & Orders -->
+      <a href="#" class="header-orders">
+        <span class="nav-line-1">Returns</span>
+        <span class="nav-line-2">& Orders</span>
+      </a>
+
+      <!-- Cart -->
+      <a href="#" class="header-cart" id="cartBtn" aria-label="Shopping Cart">
+        <div class="cart-icon-container">
+          <span class="cart-count" id="cartCount">0</span>
+          <svg class="cart-icon" viewBox="0 0 40 32" width="38" height="28" fill="none" stroke="currentColor">
+            <path d="M2 3h5l4.5 18h19l4-13H9.5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="15" cy="27" r="3" fill="currentColor"/>
+            <circle cx="28" cy="27" r="3" fill="currentColor"/>
+          </svg>
+        </div>
+        <span class="cart-label">Cart</span>
+      </a>
+    </div>
+
+    <!-- ================= SUB-NAVIGATION BAR ================= -->
+    <nav class="sub-nav">
+      <div class="sub-nav-left">
+        <button class="nav-all-btn" id="openSidebarBtn" aria-label="Open side menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <span>All</span>
+        </button>
+        <ul class="sub-nav-links">
+          <li><a href="#">Fresh</a></li>
+          <li><a href="#">Prime Video</a></li>
+          <li><a href="#">Sell</a></li>
+          <li><a href="#">Best Sellers</a></li>
+          <li><a href="#">Today's Deals</a></li>
+          <li><a href="#">Customer Service</a></li>
+          <li><a href="#">Mobiles</a></li>
+          <li><a href="#">New Releases</a></li>
+          <li><a href="#">Prime <span class="nav-arrow">▾</span></a></li>
+          <li><a href="#">Amazon Pay</a></li>
+          <li><a href="#">Electronics</a></li>
+          <li><a href="#">Home & Kitchen</a></li>
+          <li><a href="#">Fashion</a></li>
+          <li><a href="#">Computers</a></li>
+          <li><a href="#">Beauty & Personal Care</a></li>
+        </ul>
+      </div>
+      <div class="sub-nav-right">
+        <span class="prime-badge-banner">New Launches from Emerging Brands</span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ================= SIDEBAR DRAWER (HAMBURGER MENU) ================= -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar-menu" id="sidebarMenu">
+    <div class="sidebar-header">
+      <div class="sidebar-user">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+          <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
+        </svg>
+        <span>Hello, sign in</span>
+      </div>
+      <button class="sidebar-close-btn" id="closeSidebarBtn" aria-label="Close sidebar">✕</button>
+    </div>
+    <div class="sidebar-content">
+      <div class="sidebar-section">
+        <h3>Trending</h3>
+        <ul>
+          <li><a href="#">Best Sellers</a></li>
+          <li><a href="#">New Releases</a></li>
+          <li><a href="#">Movers and Shakers</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <h3>Digital Content & Devices</h3>
+        <ul>
+          <li><a href="#">Amazon Prime Video</a></li>
+          <li><a href="#">Amazon Prime Music</a></li>
+          <li><a href="#">Echo & Alexa</a></li>
+          <li><a href="#">Fire TV</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <h3>Shop by Category</h3>
+        <ul>
+          <li><a href="#">Mobiles, Computers</a></li>
+          <li><a href="#">TV, Appliances, Electronics</a></li>
+          <li><a href="#">Men's Fashion</a></li>
+          <li><a href="#">Women's Fashion</a></li>
+          <li><a href="#">Home, Kitchen, Pets</a></li>
+          <li><a href="#">Beauty & Health</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <h3>Help & Settings</h3>
+        <ul>
+          <li><a href="#">Your Account</a></li>
+          <li><a href="#">Customer Service</a></li>
+          <li><a href="#" onclick="openLoginModal(); return false;">Sign in</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT AREA ================= -->
+  <main class="main-container">
+
+    <!-- HERO BANNER CAROUSEL -->
+    <section class="hero-carousel-container" aria-label="Hero Promotional Carousel">
+      <div class="hero-carousel" id="heroCarousel">
+        <!-- Slide 1 -->
+        <div class="hero-slide active" data-index="0" style="background: linear-gradient(135deg, #10725a 0%, #174238 60%, #0d2822 100%);">
+          <div class="hero-content-wrapper">
+            <div class="hero-text-block">
+              <span class="hero-super-badge">STARTING ₹299</span>
+              <h1 class="hero-title">Deals on fashion & beauty</h1>
+              <div class="hero-tag-card">
+                <span class="icici-card-icon">💳</span>
+                <span><strong>Unlimited 5% cashback</strong> with Amazon Pay ICICI bank credit card</span>
+              </div>
+              <p class="hero-subtext">*T&amp;C apply</p>
+            </div>
+            <div class="hero-art-showcase">
+              <div class="showcase-item">
+                <div class="tshirt-graphic">NASA</div>
+                <span class="item-tag">Graphic Tees</span>
+              </div>
+              <div class="showcase-item">
+                <div class="art-icon">👗</div>
+                <span class="item-tag">Dresses from ₹499</span>
+              </div>
+              <div class="showcase-item">
+                <div class="art-icon">💄</div>
+                <span class="item-tag">Top Beauty</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="hero-slide" data-index="1" style="background: linear-gradient(135deg, #7c1a2f 0%, #460f1c 60%, #25060e 100%);">
+          <div class="hero-content-wrapper">
+            <div class="hero-text-block">
+              <span class="hero-super-badge">TOP BRANDS | LATEST TRENDS</span>
+              <h1 class="hero-title">Bestselling Kurtas<br/>Under ₹399</h1>
+              <div class="hero-tag-card">
+                <span>Festive & Daily wear collections from top emerging labels</span>
+              </div>
+            </div>
+            <div class="hero-art-showcase">
+              <div class="showcase-item">
+                <div class="art-icon">👘</div>
+                <span class="item-tag">Starting ₹299</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="hero-slide" data-index="2" style="background: linear-gradient(135deg, #0b4f8c 0%, #062b4e 60%, #03182b 100%);">
+          <div class="hero-content-wrapper">
+            <div class="hero-text-block">
+              <span class="hero-super-badge">MEGA HOME SALE</span>
+              <h1 class="hero-title">Drying racks<br/>Starting ₹999</h1>
+              <div class="hero-tag-card">
+                <span>Top Brand: <strong>bathla</strong> & more home utility essentials</span>
+              </div>
+            </div>
+            <div class="hero-art-showcase">
+              <div class="showcase-item">
+                <div class="art-icon">🧺</div>
+                <span class="item-tag">Up to 60% off</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="hero-slide" data-index="3" style="background: linear-gradient(135deg, #3d2b56 0%, #1f1430 60%, #100a1a 100%);">
+          <div class="hero-content-wrapper">
+            <div class="hero-text-block">
+              <span class="hero-super-badge">UP TO 70% OFF</span>
+              <h1 class="hero-title">Deals on headphones</h1>
+              <div class="hero-tag-card">
+                <span>Featuring <strong>JBL, ZEBRONICS, boAt, Sony & Noise</strong></span>
+              </div>
+            </div>
+            <div class="hero-art-showcase">
+              <div class="showcase-item">
+                <div class="art-icon">🎧</div>
+                <span class="item-tag">Noise Cancelling</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <button class="hero-btn prev" id="heroPrevBtn" aria-label="Previous slide">‹</button>
+      <button class="hero-btn next" id="heroNextBtn" aria-label="Next slide">›</button>
+      <div class="hero-gradient-overlay"></div>
+    </section>
+
+    <!-- ================= GRID CARDS ROW 1 (Overlapping Hero) ================= -->
+    <section class="card-grid-row overlap-hero">
+      <!-- Card 1 -->
+      <div class="card card-quad">
+        <h2 class="card-title">Appliances for your home | Up to 55% off</h2>
+        <div class="quad-grid">
+          <div class="quad-item" onclick="triggerToast('Air Conditioners category opened')">
+            <div class="quad-img"><span class="item-icon">❄️</span></div>
+            <span class="quad-label">Air conditioners</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Refrigerators category opened')">
+            <div class="quad-img"><span class="item-icon">🧊</span></div>
+            <span class="quad-label">Refrigerators</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Microwaves category opened')">
+            <div class="quad-img"><span class="item-icon">🍲</span></div>
+            <span class="quad-label">Microwaves</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Washing machines category opened')">
+            <div class="quad-img"><span class="item-icon">🧺</span></div>
+            <span class="quad-label">Washing machines</span>
+          </div>
+        </div>
+        <a href="#" class="card-footer-link">See more</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card card-quad">
+        <h2 class="card-title">Starting ₹49 | Deals on home essentials</h2>
+        <div class="quad-grid">
+          <div class="quad-item" onclick="triggerToast('Cleaning supplies selected')">
+            <div class="quad-img"><span class="item-icon">🧹</span></div>
+            <span class="quad-label">Cleaning supplies</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Bathroom accessories selected')">
+            <div class="quad-img"><span class="item-icon">🚿</span></div>
+            <span class="quad-label">Bathroom accessories</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Home tools selected')">
+            <div class="quad-img"><span class="item-icon">🔧</span></div>
+            <span class="quad-label">Home tools</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Wallpapers selected')">
+            <div class="quad-img"><span class="item-icon">🖼️</span></div>
+            <span class="quad-label">Wallpapers</span>
+          </div>
+        </div>
+        <a href="#" class="card-footer-link">Explore all</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card card-quad">
+        <h2 class="card-title">Up to 75% off | Deals on headphones</h2>
+        <div class="quad-grid">
+          <div class="quad-item" onclick="addToCartItem('boAt Airdopes', 1299)">
+            <div class="quad-img"><span class="item-icon">🎧</span></div>
+            <span class="quad-label">boAt Earbuds</span>
+          </div>
+          <div class="quad-item" onclick="addToCartItem('Noise Buds', 1499)">
+            <div class="quad-img"><span class="item-icon">🎵</span></div>
+            <span class="quad-label">Noise Wireless</span>
+          </div>
+          <div class="quad-item" onclick="addToCartItem('Zebronics Headset', 999)">
+            <div class="quad-img"><span class="item-icon">🎙️</span></div>
+            <span class="quad-label">Zebronics Audio</span>
+          </div>
+          <div class="quad-item" onclick="addToCartItem('Neckband Headphones', 799)">
+            <div class="quad-img"><span class="item-icon">🎶</span></div>
+            <span class="quad-label">Neckbands</span>
+          </div>
+        </div>
+        <a href="#" class="card-footer-link">See all offers</a>
+      </div>
+
+      <!-- Card 4 (Dual Widget: Sign-in & Sponsored) -->
+      <div class="card-split-container">
+        <div class="card card-signin-widget">
+          <h2 class="card-title">Sign in for your best experience</h2>
+          <button class="amazon-btn btn-yellow full-width shadow-btn" onclick="openLoginModal()">Sign in securely</button>
+        </div>
+        <div class="card card-sponsored-widget" onclick="addToCartItem('Financial Statement Analysis', 1490)">
+          <div class="sponsored-header">
+            <span class="sponsored-tag">Sponsored <small>ⓘ</small></span>
+          </div>
+          <div class="sponsored-product-body">
+            <div class="book-art">
+              <span class="book-icon">📊</span>
+              <span class="book-title-mini">Financial Statement Analysis</span>
+            </div>
+            <div class="book-info">
+              <p class="product-mini-title">Financial Statement Analysis: A Practitioner's Guide...</p>
+              <div class="price-row">
+                <span class="discount-pill">-50%</span>
+                <span class="price-symbol">₹</span>
+                <span class="price-main">1,490</span>
+              </div>
+              <div class="mrp-row">
+                <span>M.R.P.: <del>₹2,990.00</del></span>
+                <span class="prime-tag">✔prime</span>
+              </div>
+              <span class="coupon-tag">Save 10% with coupon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GRID CARDS ROW 2 ================= -->
+    <section class="card-grid-row">
+      <!-- Card 5 -->
+      <div class="card card-quad">
+        <h2 class="card-title">Bulk order discounts + 10% Guaranteed cashback</h2>
+        <div class="quad-grid">
+          <div class="quad-item" onclick="triggerToast('Electronics & accessories business deals')">
+            <div class="quad-img"><span class="item-icon">💻</span></div>
+            <span class="quad-label">Electronics & accessories</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Home appliances business deals')">
+            <div class="quad-img"><span class="item-icon">🔌</span></div>
+            <span class="quad-label">Home appliances</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Industrial supplies selected')">
+            <div class="quad-img"><span class="item-icon">📦</span></div>
+            <span class="quad-label">Industrial supplies</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Amazon Business Registration')">
+            <div class="quad-img biz-logo-box"><span class="biz-title">amazon<br/><strong>business</strong></span></div>
+            <span class="quad-label-sub">Register using GST, Udyam, FSSAI</span>
+          </div>
+        </div>
+        <a href="#" class="card-footer-link">Create a free account</a>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card card-quad">
+        <h2 class="card-title">Starting ₹199 | Amazon Brands & more</h2>
+        <div class="quad-grid">
+          <div class="quad-item" onclick="addToCartItem('Bedsheet Queen Size', 199)">
+            <div class="quad-img"><span class="item-icon">🛏️</span></div>
+            <span class="quad-label">Starting ₹199 | Bedsheets</span>
+          </div>
+          <div class="quad-item" onclick="addToCartItem('Door Curtains Set', 199)">
+            <div class="quad-img"><span class="item-icon">🪟</span></div>
+            <span class="quad-label">Starting ₹199 | Curtains</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Ironing board deals')">
+            <div class="quad-img"><span class="item-icon">🧺</span></div>
+            <span class="quad-label">Min. 40% off | Ironing board</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Home decor deals')">
+            <div class="quad-img"><span class="item-icon">🛋️</span></div>
+            <span class="quad-label">Up to 60% off | Home decor</span>
+          </div>
+        </div>
+        <a href="#" class="card-footer-link">See more</a>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="card card-quad">
+        <h2 class="card-title">Automotive essentials | Up to 60% off</h2>
+        <div class="quad-grid">
+          <div class="quad-item" onclick="triggerToast('Cleaning accessories selected')">
+            <div class="quad-img"><span class="item-icon">🧽</span></div>
+            <span class="quad-label">Cleaning accessories</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Tyre & rim care selected')">
+            <div class="quad-img"><span class="item-icon">🚗</span></div>
+            <span class="quad-label">Tyre & rim care</span>
+          </div>
+          <div class="quad-item" onclick="addToCartItem('Full Face Helmet', 899)">
+            <div class="quad-img"><span class="item-icon">🪖</span></div>
+            <span class="quad-label">Helmets</span>
+          </div>
+          <div class="quad-item" onclick="addToCartItem('Car Vacuum Cleaner', 699)">
+            <div class="quad-img"><span class="item-icon">🧹</span></div>
+            <span class="quad-label">Vacuum cleaner</span>
+          </div>
+        </div>
+        <a href="#" class="card-footer-link">See more</a>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="card card-quad">
+        <h2 class="card-title">Up to 50% off | Baby care & toys | Amazon Brands</h2>
+        <div class="quad-grid">
+          <div class="quad-item" onclick="addToCartItem('Baby Diapers Pack', 499)">
+            <div class="quad-img"><span class="item-icon">👶</span></div>
+            <span class="quad-label">Baby diapers & wipes</span>
+          </div>
+          <div class="quad-item" onclick="addToCartItem('Kids Ride On Toy', 999)">
+            <div class="quad-img"><span class="item-icon">🚲</span></div>
+            <span class="quad-label">Ride ons</span>
+          </div>
+          <div class="quad-item" onclick="addToCartItem('RC Drift Car', 649)">
+            <div class="quad-img"><span class="item-icon">🏎️</span></div>
+            <span class="quad-label">Starting ₹649 | RC cars</span>
+          </div>
+          <div class="quad-item" onclick="triggerToast('Baby safety products')">
+            <div class="quad-img"><span class="item-icon">🍼</span></div>
+            <span class="quad-label">Baby safety essentials</span>
+          </div>
+        </div>
+        <a href="#" class="card-footer-link">See all offers</a>
+      </div>
+    </section>
+
+    <!-- ================= PRODUCT CAROUSEL 1: Kitchen Products ================= -->
+    <section class="product-carousel-section">
+      <div class="carousel-header">
+        <h2 class="carousel-title">Up to 60% off | Best offers on kitchen products from emerging brands</h2>
+        <a href="#" class="carousel-see-all">See all</a>
+      </div>
+      <div class="carousel-wrapper">
+        <button class="slider-btn prev-btn" onclick="scrollSlider('kitchenSlider', -300)" aria-label="Previous items">‹</button>
+        <div class="horizontal-product-track" id="kitchenSlider">
+          <div class="h-product-card" onclick="addToCartItem('Stainless Steel 3-compartment Lunch Box', 699)">
+            <div class="h-img-box"><span class="prod-icon">🍱</span></div>
+            <div class="h-deal-badge"><span class="deal-pill">45% off</span> <span class="deal-label">Limited time deal</span></div>
+            <div class="h-price-row"><span class="currency">₹</span><span class="main-price">699</span> <span class="mrp"><del>₹1,299</del></span></div>
+            <p class="h-prod-desc">Stainless Steel 3-compartment Lunch Box</p>
+          </div>
+          <div class="h-product-card" onclick="addToCartItem('Insulated Coffee Tumbler with Straw', 449)">
+            <div class="h-img-box"><span class="prod-icon">🥤</span></div>
+            <div class="h-deal-badge"><span class="deal-pill">55% off</span> <span class="deal-label">Limited time deal</span></div>
+            <div class="h-price-row"><span class="currency">₹</span><span class="main-price">449</span> <span class="mrp"><del>₹999</del></span></div>
+            <p class="h-prod-desc">Insulated Coffee Tumbler with Straw</p>
+          </div>
+          <div class="h-product-card" onclick="addToCartItem('Cute Turtle Ceramic Coffee Cup', 399)">
+            <div class="h-img-box"><span class="prod-icon">🐢</span></div>
+            <div class="h-deal-badge"><span class="deal-pill">40% off</span> <span class="deal-label">Limited time deal</span></div>
+            <div class="h-price-row"><span class="currency">₹</span><span class="main-price">399</span> <span class="mrp"><del>₹699</del></span></div>
+            <p class="h-prod-desc">Cute Turtle Ceramic Handcrafted Mug</p>
+          </div>
+          <div class="h-product-card" onclick="addToCartItem('Nordic Insulated Travel Flask', 529)">
+            <div class="h-img-box"><span class="prod-icon">🍶</span></div>
+            <div class="h-deal-badge"><span class="deal-pill">50% off</span> <span class="deal-label">Limited time deal</span></div>
+            <div class="h-price-row"><span class="currency">₹</span><span class="main-price">529</span> <span class="mrp"><del>₹1,099</del></span></div>
+            <p class="h-prod-desc">Nordic Insulated Travel Flask 750ml</p>
+          </div>
+          <div class="h-product-card" onclick="addToCartItem('Glass Oil & Vinegar Dispenser Set', 349)">
+            <div class="h-img-box"><span class="prod-icon">🫒</span></div>
+            <div class="h-deal-badge"><span class="deal-pill">60% off</span> <span class="deal-label">Limited time deal</span></div>
+            <div class="h-price-row"><span class="currency">₹</span><span class="main-price">349</span> <span class="mrp"><del>₹899</del></span></div>
+            <p class="h-prod-desc">Glass Oil &amp; Vinegar Dispenser Duo</p>
+          </div>
+          <div class="h-product-card" onclick="addToCartItem('Chef Knife Set Japanese Steel', 899)">
+            <div class="h-img-box"><span class="prod-icon">🔪</span></div>
+            <div class="h-deal-badge"><span class="deal-pill">35% off</span> <span class="deal-label">Limited time deal</span></div>
+            <div class="h-price-row"><span class="currency">₹</span><span class="main-price">899</span> <span class="mrp"><del>₹1,499</del></span></div>
+            <p class="h-prod-desc">Premium 3-Piece Kitchen Knife Set</p>
+          </div>
+        </div>
+        <button class="slider-btn next-btn" onclick="scrollSlider('kitchenSlider', 300)" aria-label="Next items">›</button>
+      </div>
+    </section>
+
+    <!-- ================= AMAZON LIVE SECTION ================= -->
+    <section class="amazon-live-section">
+      <div class="live-banner-header">
+        <div class="live-title-wrap">
+          <span class="live-brand-text">AMAZON <strong>LIVE</strong></span>
+          <span class="live-tagline">- Watch, Chat &amp; SHOP LIVE</span>
+        </div>
+        <a href="#" class="carousel-see-all">See more from Amazon Live</a>
+      </div>
+
+      <div class="live-container">
+        <!-- Live Video Player Card -->
+        <div class="live-player-box" id="livePlayerBox">
+          <div class="live-badge-overlay">
+            <span class="live-dot">●</span> LIVE <span id="liveViewerCount">1.4K</span>
+          </div>
+          <div class="live-canvas-display" id="liveCanvasDisplay">
+            <div class="live-presenter-avatar">👨‍💼</div>
+            <button class="live-watch-btn" id="liveWatchBtn">
+              <span class="play-triangle">▶</span> Watch now
+            </button>
+          </div>
+          <div class="live-stream-meta">
+            <span class="stream-channel">WelcometoAsianHomeandLiving | Curated recommendations</span>
+          </div>
+        </div>
+
+        <!-- Live Products Carousel -->
+        <div class="live-products-wrapper">
+          <button class="slider-btn prev-btn" onclick="scrollSlider('liveSlider', -280)" aria-label="Previous live products">‹</button>
+          <div class="horizontal-product-track live-track" id="liveSlider">
+            <div class="h-product-card live-item featured-live" onclick="addToCartItem('Dollar Easy Fit Polo T-shirt', 356)">
+              <div class="featured-now-badge">Featured now</div>
+              <div class="h-img-box"><span class="prod-icon">👕</span></div>
+              <p class="live-item-name">Dollar Easy Fit Cotton Blend Solid Men's Polo T-shirt</p>
+              <div class="live-deal-tag"><span class="deal-pill">64% off</span></div>
+              <div class="h-price-row"><span class="currency">₹</span><span class="main-price">356</span> <span class="mrp"><del>₹999.00</del></span></div>
+            </div>
+
+            <div class="h-product-card live-item" onclick="addToCartItem('Costcoon Men Stainless Steel Ring', 149)">
+              <div class="h-img-box"><span class="prod-icon">💍</span></div>
+              <p class="live-item-name">Costcoon Men's Black Stainless Steel Ring</p>
+              <div class="live-deal-tag"><span class="deal-pill">88% off</span></div>
+              <div class="h-price-row"><span class="currency">₹</span><span class="main-price">149</span> <span class="mrp"><del>₹1,299.00</del></span></div>
+            </div>
+
+            <div class="h-product-card live-item" onclick="addToCartItem('Young & Forever Reiki Crystal Pendant', 469)">
+              <div class="h-img-box"><span class="prod-icon">🔮</span></div>
+              <p class="live-item-name">Young &amp; Forever Certified Reiki Crystal Pendant</p>
+              <div class="live-deal-tag"><span class="deal-pill">81% off</span></div>
+              <div class="h-price-row"><span class="currency">₹</span><span class="main-price">469</span> <span class="mrp"><del>₹2,499.00</del></span></div>
+            </div>
+
+            <div class="h-product-card live-item" onclick="addToCartItem('HAMMONDS FLYCATCHER Leather Belt', 499)">
+              <div class="h-img-box"><span class="prod-icon">🎗️</span></div>
+              <p class="live-item-name">HAMMONDS FLYCATCHER Original Leather Belt</p>
+              <div class="live-deal-tag"><span class="deal-pill">75% off</span></div>
+              <div class="h-price-row"><span class="currency">₹</span><span class="main-price">499</span> <span class="mrp"><del>₹1,999.00</del></span></div>
+            </div>
+          </div>
+          <button class="slider-btn next-btn" onclick="scrollSlider('liveSlider', 280)" aria-label="Next live products">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PERSONALIZED RECOMMENDATIONS BANNER ================= -->
+    <section class="personalized-recs-section">
+      <div class="recs-card">
+        <p class="recs-title">See personalized recommendations</p>
+        <button class="amazon-btn btn-yellow recs-btn" onclick="openLoginModal()">Sign in</button>
+        <p class="recs-subtitle">New customer? <a href="#" onclick="openLoginModal(); return false;">Start here.</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <a href="#" class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+      Back to top
+    </a>
+
+    <div class="footer-columns-container">
+      <div class="footer-col">
+        <h3>Get to Know Us</h3>
+        <ul>
+          <li><a href="#">About Amazon</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press Releases</a></li>
+          <li><a href="#">Amazon Science</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Connect with Us</h3>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Make Money with Us</h3>
+        <ul>
+          <li><a href="#">Sell on Amazon</a></li>
+          <li><a href="#">Become an Affiliate</a></li>
+          <li><a href="#">Fulfilment by Amazon</a></li>
+          <li><a href="#">Advertise Your Products</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Let Us Help You</h3>
+        <ul>
+          <li><a href="#">Your Account</a></li>
+          <li><a href="#">Returns Centre</a></li>
+          <li><a href="#">100% Purchase Protection</a></li>
+          <li><a href="#">Help</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">© 1996-2026, Amazon.com, Inc. or its affiliates</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="amazon-toast" id="amazonToast">
+    <span class="toast-check">✔</span>
+    <span class="toast-text" id="toastText">Item added to cart!</span>
+  </div>
+
+  <!-- Location Picker Modal -->
+  <div class="modal-overlay" id="locationModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Choose your location</h3>
+        <button class="modal-close" onclick="closeLocationModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-tip">Select a delivery location to see product availability and delivery options</p>
+        <div class="pincode-input-row">
+          <input type="text" id="pincodeInput" placeholder="Enter 6-digit pincode (e.g. 452001)" maxlength="6" />
+          <button class="amazon-btn btn-secondary" onclick="applyPincode()">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign In Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Sign In</h3>
+        <button class="modal-close" onclick="closeLoginModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="loginEmail" class="login-input" placeholder="Email or mobile phone number" />
+        <button class="amazon-btn btn-yellow full-width" onclick="handleLoginSubmit()">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="Amazon.js"></script>
+</body>
+</html>
