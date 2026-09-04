@@ -2,40 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="Styling.css" />
 </head>
 <body>
 
-  <!-- Overlay for Modals & Sidebar -->
+  <!-- Backdrop for Modals & Sidebar -->
   <div id="backdrop" class="backdrop"></div>
 
-  <!-- Location Update Modal -->
-  <div id="location-modal" class="modal">
+  <!-- LOCATION SELECTION MODAL -->
+  <div id="location-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
     <div class="modal-header">
-      <h3>Choose your location</h3>
-      <button id="close-modal-btn" class="close-btn">&times;</button>
+      <h3 id="modal-title">Choose your location</h3>
+      <button id="close-modal-btn" class="close-btn" aria-label="Close modal">&times;</button>
     </div>
     <div class="modal-body">
       <p class="modal-subtext">Select a delivery location to see product availability and delivery options</p>
       <button class="btn-primary-block">Sign in to see your addresses</button>
       <div class="modal-divider"><span>or enter an Indian pincode</span></div>
       <div class="pincode-input-group">
-        <input type="text" id="pincode-input" placeholder="Enter Pincode (e.g., 464993)" maxlength="6" value="464993" />
+        <input type="text" id="pincode-input" placeholder="Enter 6-digit Pincode" maxlength="6" value="464993" />
         <button id="apply-pincode-btn" class="btn-secondary">Apply</button>
       </div>
+      <div id="pincode-status" class="pincode-status"></div>
     </div>
   </div>
 
-  <!-- Sidebar Menu (All Categories) -->
-  <aside id="sidebar" class="sidebar">
+  <!-- SIDEBAR NAVIGATION (DRAWER) -->
+  <aside id="sidebar" class="sidebar" aria-label="Main Navigation Drawer">
     <div class="sidebar-header">
-      <i class="fa-solid fa-circle-user"></i>
-      <span>Hello, sign in</span>
-      <button id="close-sidebar-btn" class="sidebar-close">&times;</button>
+      <div class="sidebar-user">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+        </svg>
+        <span>Hello, sign in</span>
+      </div>
+      <button id="close-sidebar-btn" class="sidebar-close" aria-label="Close menu">&times;</button>
     </div>
     <div class="sidebar-content">
       <div class="sidebar-section">
@@ -50,23 +53,24 @@
       <div class="sidebar-section">
         <h3>Digital Content & Devices</h3>
         <ul>
-          <li><a href="#">Amazon Prime Video <i class="fa-solid fa-chevron-right"></i></a></li>
-          <li><a href="#">Amazon Music <i class="fa-solid fa-chevron-right"></i></a></li>
-          <li><a href="#">Echo & Alexa <i class="fa-solid fa-chevron-right"></i></a></li>
-          <li><a href="#">Fire TV <i class="fa-solid fa-chevron-right"></i></a></li>
-          <li><a href="#">Kindle E-Readers <i class="fa-solid fa-chevron-right"></i></a></li>
+          <li><a href="#">Amazon Prime Video <span class="arrow-right">&rsaquo;</span></a></li>
+          <li><a href="#">Amazon Music <span class="arrow-right">&rsaquo;</span></a></li>
+          <li><a href="#">Echo & Alexa <span class="arrow-right">&rsaquo;</span></a></li>
+          <li><a href="#">Fire TV <span class="arrow-right">&rsaquo;</span></a></li>
+          <li><a href="#">Kindle E-Readers & eBooks <span class="arrow-right">&rsaquo;</span></a></li>
         </ul>
       </div>
       <hr />
       <div class="sidebar-section">
         <h3>Shop By Category</h3>
         <ul>
-          <li><a href="#">Mobiles, Computers <i class="fa-solid fa-chevron-right"></i></a></li>
-          <li><a href="#">TV, Appliances, Electronics <i class="fa-solid fa-chevron-right"></i></a></li>
-          <li><a href="#">Men's Fashion <i class="fa-solid fa-chevron-right"></i></a></li>
-          <li><a href="#">Women's Fashion <i class="fa-solid fa-chevron-right"></i></a></li>
-          <li><a href="#">Home, Kitchen, Pets <i class="fa-solid fa-chevron-right"></i></a></li>
-          <li><a href="#">Beauty, Health, Grocery <i class="fa-solid fa-chevron-right"></i></a></li>
+          <li><a href="#">Mobiles, Computers <span class="arrow-right">&rsaquo;</span></a></li>
+          <li><a href="#">TV, Appliances, Electronics <span class="arrow-right">&rsaquo;</span></a></li>
+          <li><a href="#">Men's Fashion <span class="arrow-right">&rsaquo;</span></a></li>
+          <li><a href="#">Women's Fashion <span class="arrow-right">&rsaquo;</span></a></li>
+          <li><a href="#">Home, Kitchen, Pets <span class="arrow-right">&rsaquo;</span></a></li>
+          <li><a href="#">Beauty, Health, Grocery <span class="arrow-right">&rsaquo;</span></a></li>
+          <li><a href="#">Sports, Fitness, Bags, Luggage <span class="arrow-right">&rsaquo;</span></a></li>
         </ul>
       </div>
       <hr />
@@ -74,46 +78,74 @@
         <h3>Programs & Features</h3>
         <ul>
           <li><a href="#">Amazon Pay</a></li>
-          <li><a href="#">Gift Cards & Recharges</a></li>
+          <li><a href="#">Gift Cards & Mobile Recharges</a></li>
           <li><a href="#">Amazon Launchpad</a></li>
+        </ul>
+      </div>
+      <hr />
+      <div class="sidebar-section">
+        <h3>Help & Settings</h3>
+        <ul>
+          <li><a href="#">Your Account</a></li>
+          <li><a href="#">Customer Service</a></li>
+          <li><a href="#">Sign in</a></li>
         </ul>
       </div>
     </div>
   </aside>
 
   <!-- ==================== HEADER ==================== -->
-  <header class="navbar">
-    <!-- Top Bar -->
+  <header class="navbar" id="top-navbar">
+    <!-- Top Row -->
     <div class="nav-top">
-      <div class="nav-left">
-        <a href="#" class="nav-logo border-hover" aria-label="Amazon India">
-          <span class="logo-amazon">amazon<span class="logo-domain">.in</span></span>
-        </a>
+      <!-- Mobile hamburger button -->
+      <button class="nav-mobile-menu-btn" id="mobile-sidebar-btn" aria-label="Open navigation menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
 
-        <!-- Location Box -->
-        <div class="nav-location border-hover" id="location-trigger">
-          <div class="location-icon">
-            <i class="fa-solid fa-location-dot"></i>
-          </div>
-          <div class="location-text">
-            <span class="nav-line-1">Delivering to <span id="current-city">Bhopal</span> <span id="current-pincode">464993</span></span>
-            <span class="nav-line-2">Update location</span>
-          </div>
+      <!-- Logo with Smile Arrow -->
+      <a href="#" class="nav-logo border-hover" aria-label="Amazon.in Home">
+        <div class="logo-wrapper">
+          <span class="logo-text">amazon</span>
+          <span class="logo-domain">.in</span>
+          <svg class="logo-smile-svg" viewBox="0 0 100 24" fill="none">
+            <path d="M5 14 Q 50 26 95 6" stroke="#ff9900" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M85 4 L97 6 L93 16 Z" fill="#ff9900"/>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Delivery Location (Desktop) -->
+      <div class="nav-location border-hover" id="location-trigger" role="button" tabindex="0">
+        <div class="location-icon">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+        </div>
+        <div class="location-text">
+          <span class="nav-line-1">Delivering to <span id="current-city">Bhopal</span> <span id="current-pincode">464993</span></span>
+          <span class="nav-line-2">Update location</span>
         </div>
       </div>
 
       <!-- Search Bar -->
       <div class="nav-fill">
-        <div class="nav-search">
+        <div class="nav-search" id="nav-search-bar">
           <div class="search-category-container">
-            <select class="search-dropdown" id="search-select">
+            <select class="search-dropdown" id="search-select" aria-label="Select search category">
               <option value="all">All</option>
               <option value="deals">Deals</option>
               <option value="electronics">Electronics</option>
               <option value="fashion">Fashion</option>
               <option value="home">Home & Kitchen</option>
+              <option value="beauty">Beauty</option>
               <option value="mobiles">Mobiles</option>
               <option value="computers">Computers</option>
+              <option value="books">Books</option>
             </select>
           </div>
           <input
@@ -121,35 +153,45 @@
             class="search-input"
             id="search-input"
             placeholder="Search Amazon.in"
+            aria-label="Search Amazon.in"
             autocomplete="off"
           />
           <button class="search-submit" id="search-btn" aria-label="Submit search">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
           </button>
         </div>
       </div>
 
       <!-- Right Nav Options -->
       <div class="nav-right">
-        <!-- Language -->
-        <div class="nav-lang border-hover has-dropdown">
-          <span class="flag-icon">🇮🇳</span>
+        <!-- Language Selector -->
+        <div class="nav-lang border-hover has-dropdown" tabindex="0">
+          <div class="flag-icon-wrap">
+            <svg class="in-flag" viewBox="0 0 640 480" width="20" height="15">
+              <rect width="640" height="160" fill="#f4c430"/>
+              <rect y="160" width="640" height="160" fill="#ffffff"/>
+              <rect y="320" width="640" height="160" fill="#09814a"/>
+              <circle cx="320" cy="240" r="40" fill="#000080"/>
+            </svg>
+          </div>
           <span class="lang-code">EN</span>
-          <i class="fa-solid fa-caret-down nav-caret"></i>
+          <span class="caret-down">&#9662;</span>
           <div class="nav-flyout lang-flyout">
             <div class="flyout-arrow"></div>
-            <div class="flyout-item"><input type="radio" name="lang" checked /> English - EN</div>
+            <div class="flyout-item"><label><input type="radio" name="lang" checked /> English - EN</label></div>
             <hr />
-            <div class="flyout-item"><input type="radio" name="lang" /> हिन्दी - HI</div>
-            <div class="flyout-item"><input type="radio" name="lang" /> தமிழ் - TA</div>
-            <div class="flyout-item"><input type="radio" name="lang" /> తెలుగు - TE</div>
+            <div class="flyout-item"><label><input type="radio" name="lang" /> हिन्दी - HI</label></div>
+            <div class="flyout-item"><label><input type="radio" name="lang" /> தமிழ் - TA</label></div>
+            <div class="flyout-item"><label><input type="radio" name="lang" /> తెలుగు - TE</label></div>
           </div>
         </div>
 
         <!-- Account & Lists -->
-        <div class="nav-account border-hover has-dropdown">
+        <div class="nav-account border-hover has-dropdown" tabindex="0">
           <span class="nav-line-1">Hello, sign in</span>
-          <span class="nav-line-2">Account & Lists <i class="fa-solid fa-caret-down nav-caret"></i></span>
+          <span class="nav-line-2">Account & Lists <span class="caret-down">&#9662;</span></span>
           <div class="nav-flyout account-flyout">
             <div class="flyout-arrow"></div>
             <div class="account-flyout-top">
@@ -177,28 +219,42 @@
           </div>
         </div>
 
-        <!-- Orders -->
+        <!-- Returns & Orders -->
         <a href="#" class="nav-orders border-hover">
           <span class="nav-line-1">Returns</span>
           <span class="nav-line-2">& Orders</span>
         </a>
 
         <!-- Cart -->
-        <a href="#" class="nav-cart border-hover" id="cart-btn">
+        <a href="#" class="nav-cart border-hover" id="cart-btn" aria-label="Shopping Cart">
           <div class="cart-icon-wrapper">
             <span class="cart-count" id="cart-count">0</span>
-            <i class="fa-solid fa-cart-shopping"></i>
+            <svg viewBox="0 0 24 24" width="34" height="28" fill="currentColor">
+              <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
           </div>
           <span class="nav-line-2 cart-text">Cart</span>
         </a>
       </div>
     </div>
 
-    <!-- Category Strip -->
-    <nav class="nav-sub">
+    <!-- Mobile Location Strip -->
+    <div class="mobile-location-strip" id="mobile-location-trigger">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+      </svg>
+      <span>Delivering to <strong id="mobile-city">Bhopal</strong> <strong id="mobile-pincode">464993</strong> - Update location</span>
+    </div>
+
+    <!-- Sub-Navbar: Categories -->
+    <nav class="nav-sub" aria-label="Sub categories">
       <ul class="nav-sub-list">
         <li class="nav-sub-item nav-all-btn" id="open-sidebar-btn">
-          <i class="fa-solid fa-bars"></i>
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
           <span>All</span>
         </li>
         <li class="nav-sub-item"><a href="#">Prime Video</a></li>
@@ -208,7 +264,7 @@
         <li class="nav-sub-item"><a href="#">Mobiles</a></li>
         <li class="nav-sub-item"><a href="#">Customer Service</a></li>
         <li class="nav-sub-item"><a href="#">New Releases</a></li>
-        <li class="nav-sub-item has-sub-dropdown"><a href="#">Prime <i class="fa-solid fa-caret-down"></i></a></li>
+        <li class="nav-sub-item"><a href="#">Prime <span class="caret-down">&#9662;</span></a></li>
         <li class="nav-sub-item"><a href="#">Amazon Pay</a></li>
         <li class="nav-sub-item"><a href="#">Electronics</a></li>
         <li class="nav-sub-item"><a href="#">Fashion</a></li>
@@ -224,66 +280,73 @@
   <main class="main-container">
 
     <!-- HERO CAROUSEL -->
-    <section class="hero-carousel" id="hero-carousel">
+    <section class="hero-carousel" id="hero-carousel" aria-label="Promotional Carousel">
       <div class="carousel-track-container">
         <div class="carousel-track" id="carousel-track">
           <div class="carousel-slide current-slide slide-1">
             <div class="hero-banner-content">
-              <div class="hero-badge">Great Indian Festival Deals</div>
-              <h2>Upgrade your lifestyle with top brands</h2>
-              <p>Explore massive discounts across Electronics, Fashion & Home</p>
+              <span class="hero-badge">Great Indian Festival</span>
+              <h2>Mega Savings on Top Brands</h2>
+              <p>Up to 70% off across Fashion, Electronics, Home & Kitchen Essentials</p>
+              <a href="#" class="hero-cta-btn">Explore Deals</a>
             </div>
           </div>
           <div class="carousel-slide slide-2">
             <div class="hero-banner-content">
-              <div class="hero-badge">Amazon Music Exclusive</div>
-              <h2>3 Months Free Music Unlimited</h2>
-              <p>Over 100 million songs ad-free, offline listening & HD audio</p>
+              <span class="hero-badge badge-music">Amazon Music Unlimited</span>
+              <h2>3 Months Free Music</h2>
+              <p>Stream 100M+ songs ad-free, offline listening with HD spatial audio</p>
+              <a href="#" class="hero-cta-btn">Try Free Now</a>
             </div>
           </div>
           <div class="carousel-slide slide-3">
             <div class="hero-banner-content">
-              <div class="hero-badge">Prime Member Advantage</div>
-              <h2>Free & Fast 1-Day Delivery</h2>
-              <p>Get exclusive early access to lightning deals and entertainment</p>
+              <span class="hero-badge badge-prime">Prime Advantage</span>
+              <h2>Free 1-Day Delivery & Early Access</h2>
+              <p>Join Prime today to enjoy blockbuster entertainment, gaming & cashback</p>
+              <a href="#" class="hero-cta-btn">Join Prime</a>
             </div>
           </div>
           <div class="carousel-slide slide-4">
             <div class="hero-banner-content">
-              <div class="hero-badge">Smartphone Bonanza</div>
-              <h2>Latest 5G Smartphones starting ₹7,999</h2>
-              <p>Up to 12 months No Cost EMI & Extra Exchange Bonus</p>
+              <span class="hero-badge">Next-Gen Tech</span>
+              <h2>5G Smartphones Starting ₹7,999</h2>
+              <p>Exchange bonus up to ₹10,000 and No Cost EMI on leading flagships</p>
+              <a href="#" class="hero-cta-btn">Shop Smartphones</a>
             </div>
           </div>
         </div>
       </div>
 
-      <button class="carousel-btn btn-prev" id="carousel-prev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
-      <button class="carousel-btn btn-next" id="carousel-next" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
+      <button class="carousel-btn btn-prev" id="carousel-prev" aria-label="Previous slide">&#10094;</button>
+      <button class="carousel-btn btn-next" id="carousel-next" aria-label="Next slide">&#10095;</button>
 
       <div class="carousel-dots" id="carousel-dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
       </div>
 
       <div class="hero-gradient-overlay"></div>
     </section>
 
-    <!-- OVERLAPPING PRODUCT CARDS GRID -->
+    <!-- FLOATING TOP PRODUCT CARDS GRID (Overlapping Hero) -->
     <section class="cards-grid-section top-cards-overlap">
       <div class="cards-grid">
 
         <!-- Card 1 -->
         <article class="product-card">
           <h2 class="card-title">Under ₹399 | Trendy dresses</h2>
-          <div class="card-banner-img single-img-container">
-            <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500&auto=format&fit=crop&q=80" alt="Trendy Dresses" />
-            <div class="card-tag-pill">Top brands | Latest trends</div>
+          <div class="card-img-wrapper single-img-box img-dress">
+            <div class="card-visual-art dress-art">
+              <div class="art-icon">&#128087;</div>
+              <div class="art-label">Women's Collection</div>
+            </div>
+            <span class="card-tag-pill">Top brands | Latest trends</span>
           </div>
           <div class="card-offer-tag">
-            <i class="fa-solid fa-credit-card"></i> Unlimited 5% cashback* with Amazon Pay ICICI
+            <span class="badge-icon">&#10003;</span> Unlimited 5% cashback* with Amazon Pay ICICI
           </div>
           <a href="#" class="card-link">See all offers</a>
         </article>
@@ -295,8 +358,11 @@
             <p class="card-subtitle text-white">unlimited music, ad-free</p>
             <div class="music-logo">amazon music</div>
           </div>
-          <div class="card-banner-img single-img-container">
-            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80" alt="Amazon Music" />
+          <div class="card-img-wrapper single-img-box img-music">
+            <div class="card-visual-art music-art">
+              <div class="art-icon">&#127911;</div>
+              <div class="art-label">100M+ Songs HD Audio</div>
+            </div>
           </div>
           <div class="card-footer-info">
             <span class="tc-text">*Terms apply</span>
@@ -307,12 +373,15 @@
         <!-- Card 3 -->
         <article class="product-card">
           <h2 class="card-title">Starting ₹149 | Laundry essentials</h2>
-          <div class="brand-tag">BonKaso</div>
-          <div class="card-banner-img single-img-container">
-            <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=500&auto=format&fit=crop&q=80" alt="Laundry Essentials" />
+          <div class="brand-subtag">BonKaso</div>
+          <div class="card-img-wrapper single-img-box img-laundry">
+            <div class="card-visual-art laundry-art">
+              <div class="art-icon">&#129530;</div>
+              <div class="art-label">Laundry Baskets & Organizers</div>
+            </div>
           </div>
           <div class="bank-offer-banner">
-            <div class="bank-name"><i class="fa-solid fa-building-columns"></i> HDFC BANK</div>
+            <div class="bank-name">HDFC BANK</div>
             <div class="bank-desc"><strong>10% Instant Discount*</strong> on Credit & Debit Cards</div>
           </div>
           <a href="#" class="card-link">Explore laundry range</a>
@@ -321,12 +390,15 @@
         <!-- Card 4 -->
         <article class="product-card">
           <h2 class="card-title">Under ₹399 | Sarees</h2>
-          <div class="card-banner-img single-img-container">
-            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80" alt="Sarees collection" />
-            <div class="card-tag-pill">Top brands | Latest trends</div>
+          <div class="card-img-wrapper single-img-box img-saree">
+            <div class="card-visual-art saree-art">
+              <div class="art-icon">&#129657;</div>
+              <div class="art-label">Festive & Daily Sarees</div>
+            </div>
+            <span class="card-tag-pill">Top brands | Latest trends</span>
           </div>
           <div class="card-offer-tag">
-            <i class="fa-solid fa-tag"></i> Minimum 50% off on festive collections
+            <span class="badge-icon">&#10003;</span> Unlimited 5% cashback with ICICI card
           </div>
           <a href="#" class="card-link">See all sarees</a>
         </article>
@@ -334,46 +406,41 @@
         <!-- Card 5 -->
         <article class="product-card">
           <h2 class="card-title">Under ₹499 | Jeans</h2>
-          <div class="card-banner-img single-img-container">
-            <img src="https://images.unsplash.com/photo-1542272604-780c96856592?w=500&auto=format&fit=crop&q=80" alt="Denim Jeans" />
-            <div class="card-tag-pill">Top brands | Latest trends</div>
+          <div class="card-img-wrapper single-img-box img-jeans">
+            <div class="card-visual-art jeans-art">
+              <div class="art-icon">&#128086;</div>
+              <div class="art-label">Men & Women Denims</div>
+            </div>
+            <span class="card-tag-pill">Top brands | Latest trends</span>
           </div>
           <div class="card-offer-tag">
-            <i class="fa-solid fa-credit-card"></i> Unlimited 5% cashback with Amazon Pay
+            <span class="badge-icon">&#10003;</span> Premium stretch denim styles
           </div>
           <a href="#" class="card-link">Discover styles</a>
         </article>
 
-        <!-- Card 6: Quad Grid Deals -->
+        <!-- Card 6: Deals Quad Grid -->
         <article class="product-card">
           <h2 class="card-title">Shop popular deals</h2>
           <div class="card-quad-grid">
             <div class="quad-item">
-              <div class="quad-img">
-                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=250&auto=format&fit=crop&q=80" alt="Backpack" />
-              </div>
-              <div class="price-row"><span class="deal-price">₹159.00</span><span class="discount-badge">67% off</span></div>
+              <div class="quad-img-box q-bag"><span class="q-icon">&#127890;</span></div>
+              <div class="price-badge-row"><span class="deal-price">₹159.00</span><span class="discount-badge">67% off</span></div>
               <p class="quad-title">Travel Backpacks</p>
             </div>
             <div class="quad-item">
-              <div class="quad-img">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=250&auto=format&fit=crop&q=80" alt="Smartwatch" />
-              </div>
-              <div class="price-row"><span class="deal-price">₹199.00</span><span class="discount-badge">67% off</span></div>
-              <p class="quad-title">Smart Fitness Tracker</p>
+              <div class="quad-img-box q-watch"><span class="q-icon">&#9200;</span></div>
+              <div class="price-badge-row"><span class="deal-price">₹199.00</span><span class="discount-badge">67% off</span></div>
+              <p class="quad-title">Smartwatch Trackers</p>
             </div>
             <div class="quad-item">
-              <div class="quad-img">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=250&auto=format&fit=crop&q=80" alt="Running Shoes" />
-              </div>
-              <div class="price-row"><span class="deal-price">₹329.00</span><span class="discount-badge">67% off</span></div>
-              <p class="quad-title">Running Shoes</p>
+              <div class="quad-img-box q-shoes"><span class="q-icon">&#128095;</span></div>
+              <div class="price-badge-row"><span class="deal-price">₹329.00</span><span class="discount-badge">67% off</span></div>
+              <p class="quad-title">Running Sports Shoes</p>
             </div>
             <div class="quad-item">
-              <div class="quad-img">
-                <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=250&auto=format&fit=crop&q=80" alt="Earbuds" />
-              </div>
-              <div class="price-row"><span class="deal-price">₹199.00</span><span class="discount-badge">67% off</span></div>
+              <div class="quad-img-box q-buds"><span class="q-icon">&#127911;</span></div>
+              <div class="price-badge-row"><span class="deal-price">₹199.00</span><span class="discount-badge">67% off</span></div>
               <p class="quad-title">Wireless Earbuds</p>
             </div>
           </div>
@@ -383,11 +450,14 @@
         <!-- Card 7 -->
         <article class="product-card">
           <h2 class="card-title">Under ₹699 | Bags & backpacks</h2>
-          <div class="card-banner-img single-img-container">
-            <img src="https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=500&auto=format&fit=crop&q=80" alt="Bags" />
+          <div class="card-img-wrapper single-img-box img-luggage">
+            <div class="card-visual-art luggage-art">
+              <div class="art-icon">&#129523;</div>
+              <div class="art-label">Trolley & Daypacks</div>
+            </div>
           </div>
           <div class="card-offer-tag">
-            <i class="fa-solid fa-truck"></i> Pay on Delivery available
+            <span class="badge-icon">&#128666;</span> Pay on Delivery available
           </div>
           <a href="#" class="card-link">Explore luggage & bags</a>
         </article>
@@ -397,27 +467,19 @@
           <h2 class="card-title">Starting ₹99 | Gardening Essentials</h2>
           <div class="card-quad-grid">
             <div class="quad-item">
-              <div class="quad-img">
-                <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=250&auto=format&fit=crop&q=80" alt="Tools" />
-              </div>
-              <p class="quad-title">Tools, pots & more</p>
+              <div class="quad-img-box q-tool"><span class="q-icon">&#128736;</span></div>
+              <p class="quad-title">Tools & pruning shears</p>
             </div>
             <div class="quad-item">
-              <div class="quad-img">
-                <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=250&auto=format&fit=crop&q=80" alt="Pots" />
-              </div>
+              <div class="quad-img-box q-pot"><span class="q-icon">&#127802;</span></div>
               <p class="quad-title">Pots & planters</p>
             </div>
             <div class="quad-item">
-              <div class="quad-img">
-                <img src="https://images.unsplash.com/photo-1592417817098-8f3d6910985c?w=250&auto=format&fit=crop&q=80" alt="Seeds" />
-              </div>
+              <div class="quad-img-box q-seeds"><span class="q-icon">&#127793;</span></div>
               <p class="quad-title">Seeds & fertilizers</p>
             </div>
             <div class="quad-item">
-              <div class="quad-img">
-                <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=250&auto=format&fit=crop&q=80" alt="Plants" />
-              </div>
+              <div class="quad-img-box q-plants"><span class="q-icon">&#127794;</span></div>
               <p class="quad-title">Indoor live plants</p>
             </div>
           </div>
@@ -427,65 +489,233 @@
       </div>
     </section>
 
-    <!-- HORIZONTAL PRODUCT CAROUSEL -->
+    <!-- HORIZONTAL PRODUCT SCROLLER 1: Amazon Bazaar -->
     <section class="shelf-section">
       <div class="shelf-header">
-        <h2>Lowest prices on Amazon + Extra 15% cashback</h2>
-        <a href="#" class="shelf-link">Shop all Bazaar</a>
+        <div class="shelf-title-wrap">
+          <h2>Lowest prices on Amazon + Extra 15% cashback</h2>
+          <span class="shelf-sub">Curated daily essentials for home & living</span>
+        </div>
+        <a href="#" class="shelf-link">Shop all Bazaar &rsaquo;</a>
       </div>
       <div class="shelf-slider-wrapper">
-        <button class="shelf-nav-btn shelf-prev" aria-label="Previous items"><i class="fa-solid fa-chevron-left"></i></button>
-        <div class="shelf-carousel">
+        <button class="shelf-nav-btn shelf-prev" aria-label="Previous items">&#10094;</button>
+        <div class="shelf-carousel" id="shelf-bazaar">
+          
           <div class="shelf-item">
-            <div class="shelf-img-box">
-              <img src="https://images.unsplash.com/photo-1584589167171-541ce45f1eea?w=300&auto=format&fit=crop&q=80" alt="Closet organizers" />
-            </div>
-            <span class="shelf-price-tag">Starting ₹299</span>
-            <span class="shelf-desc">Closet organizers & hangers</span>
+            <div class="shelf-img-box bg-art-1"><span class="shelf-art-icon">&#128084;</span></div>
+            <div class="shelf-price-tag">Starting ₹299 <small class="mrp">₹799</small></div>
+            <div class="shelf-desc">Closet organizers & modular hangers</div>
             <button class="btn-add-cart" data-title="Closet organizers" data-price="299">Add to Cart</button>
           </div>
 
           <div class="shelf-item">
-            <div class="shelf-img-box">
-              <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=300&auto=format&fit=crop&q=80" alt="Home decor" />
-            </div>
-            <span class="shelf-price-tag">Starting ₹199</span>
-            <span class="shelf-desc">Home decor & wall frames</span>
+            <div class="shelf-img-box bg-art-2"><span class="shelf-art-icon">&#128444;</span></div>
+            <div class="shelf-price-tag">Starting ₹199 <small class="mrp">₹599</small></div>
+            <div class="shelf-desc">Home decor frames & modern wall art</div>
             <button class="btn-add-cart" data-title="Home decor frames" data-price="199">Add to Cart</button>
           </div>
 
           <div class="shelf-item">
-            <div class="shelf-img-box">
-              <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=300&auto=format&fit=crop&q=80" alt="Bedsheets" />
-            </div>
-            <span class="shelf-price-tag">Starting ₹109</span>
-            <span class="shelf-desc">Bedsheets & pillows</span>
+            <div class="shelf-img-box bg-art-3"><span class="shelf-art-icon">&#128716;</span></div>
+            <div class="shelf-price-tag">Starting ₹109 <small class="mrp">₹399</small></div>
+            <div class="shelf-desc">Microfiber bedsheets & soft pillows</div>
             <button class="btn-add-cart" data-title="Bedsheets & pillows" data-price="109">Add to Cart</button>
           </div>
 
           <div class="shelf-item">
-            <div class="shelf-img-box">
-              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&auto=format&fit=crop&q=80" alt="Headphones" />
-            </div>
-            <span class="shelf-price-tag">Starting ₹149</span>
-            <span class="shelf-desc">Wired & Bluetooth audio</span>
-            <button class="btn-add-cart" data-title="Bluetooth Audio" data-price="149">Add to Cart</button>
+            <div class="shelf-img-box bg-art-4"><span class="shelf-art-icon">&#127859;</span></div>
+            <div class="shelf-price-tag">Starting ₹99 <small class="mrp">₹249</small></div>
+            <div class="shelf-desc">Kitchen spatulas & dining tools</div>
+            <button class="btn-add-cart" data-title="Kitchen dining tools" data-price="99">Add to Cart</button>
           </div>
 
           <div class="shelf-item">
-            <div class="shelf-img-box">
-              <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300&auto=format&fit=crop&q=80" alt="Sneakers" />
-            </div>
-            <span class="shelf-price-tag">Starting ₹899</span>
-            <span class="shelf-desc">Men's Athletic Sneakers</span>
-            <button class="btn-add-cart" data-title="Athletic Sneakers" data-price="899">Add to Cart</button>
+            <div class="shelf-img-box bg-art-5"><span class="shelf-art-icon">&#127911;</span></div>
+            <div class="shelf-price-tag">Starting ₹149 <small class="mrp">₹499</small></div>
+            <div class="shelf-desc">Deep bass wired earphones & aux cables</div>
+            <button class="btn-add-cart" data-title="Wired Earphones" data-price="149">Add to Cart</button>
           </div>
+
+          <div class="shelf-item">
+            <div class="shelf-img-box bg-art-6"><span class="shelf-art-icon">&#128083;</span></div>
+            <div class="shelf-price-tag">Starting ₹129 <small class="mrp">₹499</small></div>
+            <div class="shelf-desc">UV-protected polarized sunglasses</div>
+            <button class="btn-add-cart" data-title="Polarized Sunglasses" data-price="129">Add to Cart</button>
+          </div>
+
+          <div class="shelf-item">
+            <div class="shelf-img-box bg-art-7"><span class="shelf-art-icon">&#9201;</span></div>
+            <div class="shelf-price-tag">Starting ₹799 <small class="mrp">₹1,999</small></div>
+            <div class="shelf-desc">Smart fitness band with AMOLED display</div>
+            <button class="btn-add-cart" data-title="Smart Fitness Band" data-price="799">Add to Cart</button>
+          </div>
+
         </div>
-        <button class="shelf-nav-btn shelf-next" aria-label="Next items"><i class="fa-solid fa-chevron-right"></i></button>
+        <button class="shelf-nav-btn shelf-next" aria-label="Next items">&#10095;</button>
       </div>
     </section>
 
-    <!-- SIGN-IN RECOMMENDATIONS -->
+    <!-- CARDS GRID SECTION 2 -->
+    <section class="cards-grid-section">
+      <div class="cards-grid">
+
+        <article class="product-card">
+          <h2 class="card-title">Minimum 60% off | Innerwear for all</h2>
+          <div class="card-quad-grid">
+            <div class="quad-item">
+              <div class="quad-img-box q-cotton"><span class="q-icon">&#129656;</span></div>
+              <p class="quad-title">Briefs, trunks & more</p>
+            </div>
+            <div class="quad-item">
+              <div class="quad-img-box q-bra"><span class="q-icon">&#128089;</span></div>
+              <p class="quad-title">Bra, briefs & more</p>
+            </div>
+            <div class="quad-item">
+              <div class="quad-img-box q-kids"><span class="q-icon">&#128118;</span></div>
+              <p class="quad-title">Kids' innerwear sets</p>
+            </div>
+            <div class="quad-item">
+              <div class="quad-img-box q-thermal"><span class="q-icon">&#129509;</span></div>
+              <p class="quad-title">Thermals & loungewear</p>
+            </div>
+          </div>
+          <a href="#" class="card-link">See all innerwear</a>
+        </article>
+
+        <article class="product-card">
+          <h2 class="card-title">Smartphones curated for you</h2>
+          <div class="card-quad-grid">
+            <div class="quad-item">
+              <div class="quad-img-box q-phone1"><span class="q-icon">&#128241;</span></div>
+              <p class="quad-title">Budget | Below ₹10,000</p>
+            </div>
+            <div class="quad-item">
+              <div class="quad-img-box q-phone2"><span class="q-icon">&#128242;</span></div>
+              <p class="quad-title">Mid range | ₹10k - ₹25k</p>
+            </div>
+            <div class="quad-item">
+              <div class="quad-img-box q-phone3"><span class="q-icon">&#128187;</span></div>
+              <p class="quad-title">Premium | ₹25k - ₹40k</p>
+            </div>
+            <div class="quad-item">
+              <div class="quad-img-box q-phone4"><span class="q-icon">&#128081;</span></div>
+              <p class="quad-title">Ultra premium | Above ₹40k</p>
+            </div>
+          </div>
+          <a href="#" class="card-link">See all smartphones</a>
+        </article>
+
+        <article class="product-card">
+          <h2 class="card-title">Starting ₹149 | Favourite audio brands</h2>
+          <div class="card-quad-grid">
+            <div class="quad-item brand-box-wrap">
+              <div class="quad-img-box brand-boat"><span class="brand-text">boAt</span></div>
+              <p class="quad-title">boAt audio</p>
+            </div>
+            <div class="quad-item brand-box-wrap">
+              <div class="quad-img-box brand-boult"><span class="brand-text">BOULT</span></div>
+              <p class="quad-title">Boult Audio</p>
+            </div>
+            <div class="quad-item brand-box-wrap">
+              <div class="quad-img-box brand-noise"><span class="brand-text">noise</span></div>
+              <p class="quad-title">Noise acoustics</p>
+            </div>
+            <div class="quad-item brand-box-wrap">
+              <div class="quad-img-box brand-zeb"><span class="brand-text">ZEBRONICS</span></div>
+              <p class="quad-title">Zebronics sound</p>
+            </div>
+          </div>
+          <a href="#" class="card-link">Explore all audio brands</a>
+        </article>
+
+        <article class="product-card">
+          <h2 class="card-title">Up to 60% off | Printers & routers</h2>
+          <div class="card-quad-grid">
+            <div class="quad-item">
+              <div class="quad-img-box q-print1"><span class="q-icon">&#128424;</span></div>
+              <p class="quad-title">All-in-one ink tank</p>
+            </div>
+            <div class="quad-item">
+              <div class="quad-img-box q-print2"><span class="q-icon">&#128439;</span></div>
+              <p class="quad-title">Laser printers</p>
+            </div>
+            <div class="quad-item">
+              <div class="quad-img-box q-router"><span class="q-icon">&#128246;</span></div>
+              <p class="quad-title">WiFi routers</p>
+            </div>
+            <div class="quad-item">
+              <div class="quad-img-box q-extender"><span class="q-icon">&#128225;</span></div>
+              <p class="quad-title">Mesh extenders</p>
+            </div>
+          </div>
+          <a href="#" class="card-link">See all computing</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- HORIZONTAL PRODUCT SCROLLER 2: Fashion -->
+    <section class="shelf-section">
+      <div class="shelf-header">
+        <div class="shelf-title-wrap">
+          <h2>Customers' Most-Loved Fashion for you</h2>
+          <span class="shelf-sub">Top-rated apparel and footwear picks</span>
+        </div>
+        <a href="#" class="shelf-link">Explore Fashion Store &rsaquo;</a>
+      </div>
+      <div class="shelf-slider-wrapper">
+        <button class="shelf-nav-btn shelf-prev" aria-label="Previous fashion items">&#10094;</button>
+        <div class="shelf-carousel" id="shelf-fashion">
+          
+          <div class="shelf-item">
+            <div class="shelf-img-box f-shoe"><span class="shelf-art-icon">&#128094;</span></div>
+            <div class="shelf-price-tag">₹899 <small class="mrp">₹1,999</small></div>
+            <div class="shelf-desc">Men's Breathable Mesh Sneakers</div>
+            <button class="btn-add-cart" data-title="Breathable Mesh Sneakers" data-price="899">Add to Cart</button>
+          </div>
+
+          <div class="shelf-item">
+            <div class="shelf-img-box f-tee"><span class="shelf-art-icon">&#128085;</span></div>
+            <div class="shelf-price-tag">₹399 <small class="mrp">₹999</small></div>
+            <div class="shelf-desc">Pure Organic Cotton Solid Crew Tee</div>
+            <button class="btn-add-cart" data-title="Organic Cotton Crew Tee" data-price="399">Add to Cart</button>
+          </div>
+
+          <div class="shelf-item">
+            <div class="shelf-img-box f-watch"><span class="shelf-art-icon">&#9200;</span></div>
+            <div class="shelf-price-tag">₹1,249 <small class="mrp">₹2,495</small></div>
+            <div class="shelf-desc">Classic Chronograph Leather Watch</div>
+            <button class="btn-add-cart" data-title="Chronograph Watch" data-price="1249">Add to Cart</button>
+          </div>
+
+          <div class="shelf-item">
+            <div class="shelf-img-box f-bag"><span class="shelf-art-icon">&#128092;</span></div>
+            <div class="shelf-price-tag">₹649 <small class="mrp">₹1,499</small></div>
+            <div class="shelf-desc">Women's Structured Vegan Leather Tote</div>
+            <button class="btn-add-cart" data-title="Vegan Leather Tote" data-price="649">Add to Cart</button>
+          </div>
+
+          <div class="shelf-item">
+            <div class="shelf-img-box f-shirt"><span class="shelf-art-icon">&#128084;</span></div>
+            <div class="shelf-price-tag">₹549 <small class="mrp">₹1,299</small></div>
+            <div class="shelf-desc">Slim-fit Casual Checkered Oxford Shirt</div>
+            <button class="btn-add-cart" data-title="Checkered Oxford Shirt" data-price="549">Add to Cart</button>
+          </div>
+
+          <div class="shelf-item">
+            <div class="shelf-img-box f-blazer"><span class="shelf-art-icon">&#129509;</span></div>
+            <div class="shelf-price-tag">₹2,199 <small class="mrp">₹4,999</small></div>
+            <div class="shelf-desc">Men's Tailored Formal Two-Button Blazer</div>
+            <button class="btn-add-cart" data-title="Formal Two-Button Blazer" data-price="2199">Add to Cart</button>
+          </div>
+
+        </div>
+        <button class="shelf-nav-btn shelf-next" aria-label="Next fashion items">&#10095;</button>
+      </div>
+    </section>
+
+    <!-- SIGN-IN RECOMMENDATIONS BANNER -->
     <section class="signin-recommendations">
       <div class="recommendations-box">
         <h3>See personalized recommendations</h3>
@@ -498,7 +728,7 @@
 
   <!-- ==================== FOOTER ==================== -->
   <footer class="footer">
-    <div class="back-to-top" id="back-to-top-btn">
+    <div class="back-to-top" id="back-to-top-btn" role="button" tabindex="0">
       <span>Back to top</span>
     </div>
 
@@ -550,17 +780,17 @@
         <span class="logo-amazon">amazon<span class="logo-domain">.in</span></span>
       </div>
       <div class="footer-locale-selectors">
-        <button class="footer-btn-lang"><i class="fa-solid fa-globe"></i> English</button>
-        <button class="footer-btn-country"><span class="flag-icon">🇮🇳</span> India</button>
+        <button class="footer-btn-lang">&#127760; English</button>
+        <button class="footer-btn-country">🇮🇳 India</button>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div class="footer-services-grid">
         <div class="service-item"><a href="#"><strong>AbeBooks</strong><br /><span>Books, art & collectibles</span></a></div>
-        <div class="service-item"><a href="#"><strong>AWS</strong><br /><span>Cloud Computing Services</span></a></div>
-        <div class="service-item"><a href="#"><strong>Audible</strong><br /><span>Audio Books</span></a></div>
-        <div class="service-item"><a href="#"><strong>IMDb</strong><br /><span>Movies & Celebrities</span></a></div>
+        <div class="service-item"><a href="#"><strong>Amazon Web Services</strong><br /><span>Scalable Cloud Computing</span></a></div>
+        <div class="service-item"><a href="#"><strong>Audible</strong><br /><span>Download Audio Books</span></a></div>
+        <div class="service-item"><a href="#"><strong>IMDb</strong><br /><span>Movies, TV & Celebrities</span></a></div>
       </div>
       <div class="footer-copyright">
         <div class="footer-policy-links">
@@ -573,7 +803,8 @@
     </div>
   </footer>
 
-  <div id="toast" class="toast">Item added to cart!</div>
-  <script src="script.js"></script>
+  <!-- Notification Toast -->
+  <div id="toast" class="toast" role="alert">Item added to cart!</div>
+  <script src="Amazon.js"></script>
 </body>
 </html>
